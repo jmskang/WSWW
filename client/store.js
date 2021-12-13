@@ -1,37 +1,72 @@
 import axios from 'axios';
-import {createStore, applyMiddleware} from 'redux';
-import ThunkMiddleware from 'redux-thunk';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { createLogger } from 'redux-logger';
+import socket from './socket';
 
 ////// Action Types
-const GOT_MESSAGES_FROM_SERVER = 'GOT_MESSAGES_FROM_SERVER';
-const WRITE_MESSAGE = 'WRITE_MESSAGE';
-const GOT_NEW_MESSAGE_FROM_SERVER = 'GOT_NEW_MESSAGE_FROM_SERVER'; 
+const SET_USER_ID = 'SET_USER_ID';
+const SET_ROOM_NAME = 'SET_ROOM_NAME';
+const CREATE_SESSION = 'CREATE_SESSION';
+const JOIN_SESSION = 'JOIN_SESSION';
+const PARTNER_JOINED = 'PARTNER_JOINED';
+const PARTNER_LIKE_OR_DISLIKE = 'PARTNER_LIKE_OR_DISLIKE';
 
 ///// Action Creators
-const gotMessagesFromServer = (messages) => ({type: GOT_MESSAGES_FROM_SERVER, messages})
-const writeMessage = (inputContent) => ({type: WRITE_MESSAGE, newMessageEntry: inputContent})
+export const setUserId = (userId) => ({
+  type: SET_USER_ID,
+  userId,
+});
+export const setRoomName = (roomName) => ({
+  type: SET_ROOM_NAME,
+  roomName,
+});
+export const createSession = (sessionState) => ({
+  type: CREATE_SESSION,
+  sessionState,
+});
+export const joinSession = (sessionState, partnerId) => ({ type: JOIN_SESSION, sessionState, partnerId });
 
-export const fetchMessagesFromServer = () => {
-    return async (dispatch) => {
-        const {data: messages} = await axios.get('/api/messages');
-        dispatch(gotMessagesFromServer(messages));
-    }
-}
+export const partnerJoined = (partnerId) => ({ type: PARTNER_JOINED, partnerId });
 
+export const partnerLikeOrDislike = (likeOrDislike) => ({
+  type: PARTNER_LIKE_OR_DISLIKE,
+  likeOrDislike,
+});
 
 const initialState = {
-    messages: [],
-    newMessageEntry: ''
-  };
+  sessionState: null,
+  userId: null,
+  roomName: null,
+};
 
-const reducer = (state = inititalState, action) => {
-    switch(action.type) {
-        case GOT_MESSAGES_FROM_SERVER :
-            return {...state, messages: action.messages}
-        default : 
-            return state;
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case SET_USER_ID:
+      return { ...state, userId: action.userId, partner: null };
+    case SET_ROOM_NAME:
+      return { ...state, roomName: action.roomName };
+    case CREATE_SESSION:
+      return { ...state, sessionState: action.sessionState };
+    case JOIN_SESSION:
+      return { ...state, sessionState: action.sessionState, partner: action.partnerId };
+    case PARTNER_JOINED:
+      return { ...state, partner: action.partnerId };
+    case PARTNER_LIKE_OR_DISLIKE: {
+      let newPartnerChoices = [...state.sessionState.partnerChoices];
+      newPartnerChoices.push(action.likeOrDislike);
+      let stateCopy = { ...state };
+      stateCopy.sessionState.partnerChoices = newPartnerChoices;
+      return stateCopy;
     }
-}
+    default:
+      return state;
+  }
+};
 
-const store = createStore(reducer, applyMiddleware(ThunkMiddleware));
+const middleware = composeWithDevTools(applyMiddleware(thunkMiddleware, createLogger({ collapsed: true })));
+
+const store = createStore(reducer, middleware);
+
 export default store;

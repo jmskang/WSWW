@@ -43,9 +43,6 @@ socket.on('connect', () => {
   });
 
   socket.on('endSession', (matchedMovies) => {
-    // console.log('THE SESSION HAS ENDED BOIS');
-    // console.log('these are your matched movies, ', matchedMovies);
-
     store.dispatch(endSession(matchedMovies));
   });
 });

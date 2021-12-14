@@ -1,6 +1,3 @@
-const Message = require('../db/models/message');
-const Channel = require('../db/models/channel');
-
 const { initializeSession } = require('./session');
 
 const makeId = (length) => {

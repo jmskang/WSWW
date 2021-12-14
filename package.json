@@ -1,7 +1,7 @@
 {
-  "name": "stackchat",
+  "name": "WWSW",
   "version": "1.0.0",
-  "description": "A chatty appy chat app",
+  "description": "An app built for the sole purpose of minimizing arguments between partners over 'What should we watch?'",
   "main": "index.js",
   "scripts": {
     "start": "npm run start-server & npm run build-watch",

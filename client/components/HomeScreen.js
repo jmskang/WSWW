@@ -2,7 +2,6 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import socket from '../socket';
 import { useDispatch, useSelector } from 'react-redux';
-import { createNewSession } from '../store';
 
 const HomeScreen = (props) => {
   const dispatch = useDispatch();

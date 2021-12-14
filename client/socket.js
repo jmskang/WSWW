@@ -1,15 +1,19 @@
 import io from 'socket.io-client';
 import store from './store';
-import { setUserId, setRoomName, createSession, joinSession, partnerJoined, partnerLikeOrDislike } from './store';
+import {
+  setUserId,
+  setRoomName,
+  createSession,
+  joinSession,
+  partnerJoined,
+  partnerLikeOrDislike,
+  endSession,
+} from './store';
 
 const socket = io(window.location.origin);
 
 socket.on('connect', () => {
   console.log('I am now connected to the server!');
-
-  // socket.on("new-message", (message) => {
-  //   store.dispatch(gotNewMessageFromServer(message));
-  // });
 
   socket.on('createSession', (sessionState) => {
     store.dispatch(createSession(sessionState));
@@ -36,6 +40,13 @@ socket.on('connect', () => {
 
   socket.on('partnerLikeOrDislike', (likeOrDislike) => {
     store.dispatch(partnerLikeOrDislike(likeOrDislike));
+  });
+
+  socket.on('endSession', (matchedMovies) => {
+    // console.log('THE SESSION HAS ENDED BOIS');
+    // console.log('these are your matched movies, ', matchedMovies);
+
+    store.dispatch(endSession(matchedMovies));
   });
 });
 

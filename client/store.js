@@ -12,6 +12,7 @@ const CREATE_SESSION = 'CREATE_SESSION';
 const JOIN_SESSION = 'JOIN_SESSION';
 const PARTNER_JOINED = 'PARTNER_JOINED';
 const PARTNER_LIKE_OR_DISLIKE = 'PARTNER_LIKE_OR_DISLIKE';
+const END_SESSION = 'END_SESSION';
 
 ///// Action Creators
 export const setUserId = (userId) => ({
@@ -33,6 +34,10 @@ export const partnerJoined = (partnerId) => ({ type: PARTNER_JOINED, partnerId }
 export const partnerLikeOrDislike = (likeOrDislike) => ({
   type: PARTNER_LIKE_OR_DISLIKE,
   likeOrDislike,
+});
+export const endSession = (matchedMovies) => ({
+  type: END_SESSION,
+  matchedMovies,
 });
 
 const initialState = {
@@ -60,6 +65,8 @@ const reducer = (state = initialState, action) => {
       stateCopy.sessionState.partnerChoices = newPartnerChoices;
       return stateCopy;
     }
+    case END_SESSION:
+      return { ...state, matchedMovies: action.matchedMovies };
     default:
       return state;
   }

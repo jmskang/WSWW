@@ -3,7 +3,7 @@
 // and then auto-magically injects a <style> tag onto the DOM!
 // Wowzers! Check out the webpack.config.js to see how to add them!
 import './index.css';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import store from './store';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -12,9 +12,9 @@ import { Main } from './components';
 
 ReactDOM.render(
   <Provider store={store}>
-  <Router>
-    <Main />
-  </Router>
+    <Router>
+      <Main />
+    </Router>
   </Provider>,
   document.getElementById('app')
 );

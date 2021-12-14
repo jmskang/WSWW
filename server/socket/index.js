@@ -80,6 +80,28 @@ module.exports = (io) => {
     function handleLikeDislike(clientId, likeOrDislike, roomCode) {
       state[roomCode][`client${clientId}Choices`].push(likeOrDislike);
       client.to(roomCode).emit('partnerLikeOrDislike', likeOrDislike);
+      stateCheck(roomCode);
+    }
+
+    function stateCheck(roomCode) {
+      let room = state[roomCode];
+      if (room.client1Choices.length == 10 && room.client2Choices.length == 10) {
+        let matchedMovies = getMatchedMovies(roomCode);
+        state[roomCode] = null;
+        io.in(roomCode).emit('endSession', matchedMovies);
+      }
+    }
+
+    function getMatchedMovies(roomCode) {
+      let room = state[roomCode];
+      let matchedMovies = [];
+      for (let i = 0; i < room.client1Choices.length; i++) {
+        if (room.client1Choices[i] == room.client2Choices[i]) {
+          matchedMovies.push(room.sessionMovies[i]);
+        }
+      }
+
+      return matchedMovies;
     }
   });
 };

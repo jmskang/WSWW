@@ -22,13 +22,32 @@ const HomeScreen = (props) => {
 
   return (
     <div className='home-component-wrapper'>
-      <h1>What Should We Watch?</h1>
-      <div className='create-new-session-wrapper'>
-        <h3 onClick={handleNewSession}>Create a New Session</h3>
-      </div>
-      <div className='join-session-wrapper'>
-        <h3 onClick={handleJoinSession}>Join a Session</h3>
-        <input id='session-code-input' type='text' autoComplete='off' placeholder='Enter a session ID!'></input>
+      <img src='/images/WSWW.jpg'></img>
+      <div className='home-options'>
+        <div className='helper-text'>
+          <div>Create a new room</div>
+          <div>or join an existing one!</div>
+          <hr style={{ width: '90%' }} />
+          <div style={{ paddingTop: '50px' }}>You and your partner are given 10 random trending movies on Netflix.</div>
+          <div>Pick which movies you want to watch and see your matches at the end!</div>
+        </div>
+        <div className='create-new-session' onClick={handleNewSession}>
+          Create a New Room
+        </div>
+
+        <div className='join-session-wrapper'>
+          <div>Join a Room</div>
+          <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+            <input
+              id='session-code-input'
+              type='text'
+              autoComplete='off'
+              style={{ textAlign: 'center' }}
+              placeholder='Enter room code!'
+            ></input>
+            <div className='join-button'>Join!</div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -5,18 +5,19 @@ import Navbar from './Navbar';
 import MessagesList from './MessagesList';
 import HomeScreen from './HomeScreen';
 import Session from './Session';
+import MatchedMovies from './MatchedMovies';
+
+import test from './test';
 
 export default class Main extends Component {
   render() {
     return (
-      <div>
-        <main>
-          <Switch>
-            <Route path='/home' component={HomeScreen} />
-            <Route path='/session' component={Session} />
-          </Switch>
-        </main>
-      </div>
+      <Switch>
+        <Route path='/home' component={HomeScreen} />
+        <Route path='/session' component={Session} />
+        <Route path='/matchedmovies' component={MatchedMovies} />
+        <Route path='/moviecardTest' component={test} />
+      </Switch>
     );
   }
 }

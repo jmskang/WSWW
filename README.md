@@ -1,9 +1,12 @@
 # WSWW (What Should We Watch?)
 
-An app built to minimize any arguments over 'What should we watch?'. 
-Made with React/Redux, Node.js, Express, and socket.io for real time interactions between clients.
+An app built to minimize any arguments over 'What should we watch?'. \n
+Made with React/Redux, Node.js, Express, and socket.io for real time interactions between clients. \n
+\n
+Designed to be viewed on mobile devices! \n
+\n
 
-Deployed App: 
+Deployed App: https://wsww-app.herokuapp.com/
 
 ## Setup
 

@@ -1,11 +1,11 @@
 {
   "name": "WWSW",
   "version": "1.0.0",
-  "description": "An app built to minimize any arguments between partners over 'What should we watch?'",
+  "description": "An app built to minimize arguments between partners over 'What should we watch?'",
   "main": "index.js",
   "scripts": {
     "start": "npm run start-server & npm run build-watch",
-    "start-server": "nodemon server -w server",
+    "start-server": "node server -w server",
     "build-watch": "webpack -w"
   },
   "author": "",

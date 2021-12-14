@@ -22,7 +22,6 @@ const genre_IDs = {
   10752: 'War',
   37: 'Western',
 };
-const moviesList = require('./dummyData');
 
 const randomUnique = (range, count) => {
   let nums = new Set();
@@ -40,20 +39,20 @@ const initializeSession = () => {
 const createSessionState = async () => {
   try {
     let sessionMovies = [];
-    // const response1 = await axios.get(
-    //   `https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}&sort_by=popularity.desc&with_watch_providers=8&watch_region=US&page=1`
-    // );
-    // const response2 = await axios.get(
-    //   `https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}&sort_by=popularity.desc&with_watch_providers=8&watch_region=US&page=2`
-    // );
-    // const response3 = await axios.get(
-    //   `https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}&sort_by=popularity.desc&with_watch_providers=8&watch_region=US&page=3`
-    // );
-    // let moviesList1 = response1.data.results;
-    // const moviesList2 = response2.data.results;
-    // const moviesList3 = response3.data.results;
-    // moviesList1 = moviesList1.concat(moviesList2);
-    // const moviesList = moviesList1.concat(moviesList3);
+    const response1 = await axios.get(
+      `https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}&sort_by=popularity.desc&with_watch_providers=8&watch_region=US&page=1`
+    );
+    const response2 = await axios.get(
+      `https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}&sort_by=popularity.desc&with_watch_providers=8&watch_region=US&page=2`
+    );
+    const response3 = await axios.get(
+      `https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}&sort_by=popularity.desc&with_watch_providers=8&watch_region=US&page=3`
+    );
+    let moviesList1 = response1.data.results;
+    const moviesList2 = response2.data.results;
+    const moviesList3 = response3.data.results;
+    moviesList1 = moviesList1.concat(moviesList2);
+    const moviesList = moviesList1.concat(moviesList3);
 
     let randomUniqueNumbers = randomUnique(moviesList.length, 10);
     randomUniqueNumbers.forEach((num) => {
@@ -64,6 +63,7 @@ const createSessionState = async () => {
         rating: moviesList[num].vote_average,
         genreList,
         description: moviesList[num].overview,
+        imageUrl: `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${moviesList[num].poster_path}`,
       });
     });
     return { sessionMovies, client1Choices: [], client2Choices: [] };

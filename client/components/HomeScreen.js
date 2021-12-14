@@ -28,8 +28,12 @@ const HomeScreen = (props) => {
           <div>Create a new room</div>
           <div>or join an existing one!</div>
           <hr style={{ width: '90%' }} />
-          <div style={{ paddingTop: '50px' }}>You and your partner are given 10 random trending movies on Netflix.</div>
-          <div>Pick which movies you want to watch and see your matches at the end!</div>
+          <div style={{ paddingTop: '50px', width: '95%', marginLeft: '2.5%' }}>
+            You and your partner are given 10 random trending movies on Netflix.
+          </div>
+          <div style={{ width: '95%', marginLeft: '2.5%' }}>
+            Pick which movies you want to watch and see your matches at the end!
+          </div>
         </div>
         <div className='create-new-session' onClick={handleNewSession}>
           Create a New Room
@@ -45,7 +49,9 @@ const HomeScreen = (props) => {
               style={{ textAlign: 'center' }}
               placeholder='Enter room code!'
             ></input>
-            <div className='join-button'>Join!</div>
+            <div className='join-button' onClick={handleJoinSession}>
+              Join!
+            </div>
           </div>
         </div>
       </div>

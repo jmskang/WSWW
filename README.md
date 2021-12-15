@@ -1,6 +1,6 @@
 # WSWW (What Should We Watch?)
 
-An app built to minimize any arguments over 'What should we watch?'. 
+An app built to minimize the number of times you ask your partner 'What should we watch?'. 
 
 Made with React/Redux, Node.js, Express, and socket.io for real time interactions between clients. 
 

@@ -37,8 +37,8 @@ const MovieCard = () => {
           <div className='movie-desc'>{currentMovie.description}</div>
         </div>
         <div className='pick-movie-buttons-wrapper'>
-          <img className='thumbs-up' onClick={handleDislike} src='/images/thumbs-up.svg'></img>
-          <img className='thumbs-down' onClick={handleLike} src='/images/thumbs-down.svg'></img>
+          <img className='thumbs-up' onClick={handleLike} src='/images/thumbs-up.svg'></img>
+          <img className='thumbs-down' onClick={handleDislike} src='/images/thumbs-down.svg'></img>
         </div>
       </div>
     );

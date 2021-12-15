@@ -93,7 +93,7 @@ module.exports = (io) => {
       let room = state[roomCode];
       let matchedMovies = [];
       for (let i = 0; i < room.client1Choices.length; i++) {
-        if (room.client1Choices[i] == room.client2Choices[i]) {
+        if (room.client1Choices[i] == true && room.client2Choices[i] == true) {
           matchedMovies.push(room.sessionMovies[i]);
         }
       }

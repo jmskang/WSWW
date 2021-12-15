@@ -6,8 +6,8 @@ Made with React/Redux, Node.js, Express, and socket.io for real time interaction
 
 Designed to be viewed on mobile devices! 
 
-
-Deployed App: https://wsww-app.herokuapp.com/
+## Deployed Application
+https://wsww-app.herokuapp.com/
 
 ## Setup
 

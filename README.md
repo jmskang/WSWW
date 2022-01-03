@@ -6,6 +6,11 @@ Made with React/Redux, Node.js, Express, and socket.io for real time interaction
 
 Designed to be viewed on mobile devices! 
 
+![home](https://github.com/jmskang/WSWW/blob/master/wwsw-home.jpg?raw=true)
+![waiting](https://github.com/jmskang/WSWW/blob/master/wsww-waiting.jpg?raw=true)
+![sessions](https://github.com/jmskang/WSWW/blob/master/wsww-session.jpg?raw=true)
+
+
 ## Deployed Application
 https://wsww-app.herokuapp.com/
 

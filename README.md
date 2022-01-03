@@ -6,9 +6,11 @@ Made with React/Redux, Node.js, Express, and socket.io for real time interaction
 
 Designed to be viewed on mobile devices! 
 
-![home](https://github.com/jmskang/WSWW/blob/master/wwsw-home.jpg?raw=true)
-![waiting](https://github.com/jmskang/WSWW/blob/master/wsww-waiting.jpg?raw=true)
-![sessions](https://github.com/jmskang/WSWW/blob/master/wsww-session.jpg?raw=true)
+<div style="display:flex;">
+  <img src="public/images/wwsw-home.jpg" alt="home" width="200"/>
+  <img src="public/images/wsww-waiting.jpg" alt="waiting" width="200"/>
+  <img src="public/images/wsww-session.jpg" alt="session" width="200"/>
+<div>
 
 
 ## Deployed Application
